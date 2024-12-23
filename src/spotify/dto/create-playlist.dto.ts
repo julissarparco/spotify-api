@@ -1,20 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class CreatePlaylistDto {
   @ApiProperty({ description: 'Name of the playlist', example: 'My Playlist' })
-  readonly name: string;
+  @IsString()
+  name: string;
 
   @ApiProperty({
     description: 'Description of the playlist',
     example: 'A playlist created via the API',
     required: false,
   })
-  readonly description?: string;
+  @IsString()
+  @IsOptional()
+  description?: string;
 
   @ApiProperty({
     description: 'Is the playlist public?',
     example: true,
     required: false,
   })
-  readonly public?: boolean;
+  @IsBoolean()
+  @IsOptional()
+  public?: boolean;
 }
